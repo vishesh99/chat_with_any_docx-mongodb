@@ -128,7 +128,10 @@ def main():
             st.success("Questions answered.")
 
             # Save responses to Excel
-            excel_file_path = "responses.xlsx"
+            excel_file_name = os.path.splitext(uploaded_pdf.name)[0] + ".xlsx"
+            excel_file_path = os.path.join("responses", excel_file_name)
+            if not os.path.exists("responses"):
+                os.makedirs("responses")
             write_responses_to_excel(responses, excel_file_path)
             st.success(f"Responses saved to '{excel_file_path}'.")
 
